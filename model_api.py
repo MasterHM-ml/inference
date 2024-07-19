@@ -12,8 +12,8 @@ with open("config.yaml", "r") as ff:
 model = YOLO(config["model"]["best"], task="detect")
 
 
-def output_image(image) -> List[Results]:
-    output: List[Results] = model.predict(image, imgsz=(360,640), conf=0.7, max_det=1,)# half=True, vid_stride=1, stream=True)
+def output_image(image, confidence) -> List[Results]:
+    output: List[Results] = model.predict(image, imgsz=(720,1280), conf=confidence, max_det=1, half=True) #, vid_stride=1, stream=True)
     return output
 
 def parse_label(contents: Results):
